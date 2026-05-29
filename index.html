@@ -3,198 +3,517 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kochicode | Coming Soon</title>
+    <meta name="description" content="kochicode - Next-generation software development agency. We craft high-performance websites, scalable cloud infrastructure, and intelligent software tailored to scale.">
+    <meta name="keywords" content="kochicode, software agency, web development, custom software, cloud devops, AI integration, app developers">
+    <meta name="author" content="kochicode">
+    <title>kochicode | Engineering the Future of Software</title>
     
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
-
-    <style>
-        /* --- CSS STYLES --- */
-        
-        :root {
-            --bg-color: #0a0a0c;
-            --text-main: #ffffff;
-            --text-muted: #888890;
-            --accent: #3b82f6; /* Sleek electric blue */
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Subtle background glow effect */
-        .background-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 40vw;
-            height: 40vw;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
-            transform: translate(-50%, -50%);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 2rem;
-            /* Will be animated by JS */
-            transition: transform 0.1s ease-out; 
-        }
-
-        /* Small badge */
-        .badge {
-            display: inline-block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            margin-bottom: 2rem;
-            background: rgba(59, 130, 246, 0.05);
-        }
-
-        /* Main Logo */
-        .logo {
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-        }
-
-        .logo .accent {
-            color: var(--accent);
-            animation: blink 1s step-end infinite;
-        }
-
-        /* Subtitle */
-        .subtitle {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            font-weight: 300;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 3rem;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Loading dots */
-        .loader {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .dot {
-            width: 6px;
-            height: 6px;
-            background-color: var(--text-muted);
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: pulse 1.5s infinite ease-in-out both;
-        }
-
-        .dot:nth-child(1) { animation-delay: -0.32s; }
-        .dot:nth-child(2) { animation-delay: -0.16s; }
-
-        /* Animations */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        @keyframes pulse {
-            0%, 80%, 100% { transform: scale(1); opacity: 0.4; }
-            40% { transform: scale(1.5); opacity: 1; }
-        }
-
-        /* Mobile adjustments */
-        @media (max-width: 768px) {
-            .background-glow {
-                width: 80vw;
-                height: 80vw;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
+    <!-- Ambient Background Effects -->
+    <div class="tech-grid-background"></div>
+    <div class="decorative-scanline"></div>
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
 
-    <div class="background-glow"></div>
-    
-    <main class="container" id="parallax-container">
-        <!-- The style attribute adds a staggered delay to the animations -->
-        <div class="badge fade-in-up" style="animation-delay: 0.2s;">Coming Soon</div>
-        
-        <h1 class="logo fade-in-up" style="animation-delay: 0.4s;">
-            kochicode<span class="accent">_</span>
-        </h1>
-        
-        <p class="subtitle fade-in-up" style="animation-delay: 0.6s;">
-            We are crafting something extraordinary.<br>Stay tuned for the launch.
-        </p>
-        
-        <div class="loader fade-in-up" style="animation-delay: 0.8s;">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-    </main>
-
-    <script>
-        /* --- JAVASCRIPT --- */
-        
-        document.addEventListener("DOMContentLoaded", () => {
-            const container = document.getElementById("parallax-container");
+    <!-- Navigation Header -->
+    <header id="main-header" class="glass-nav">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="logo-text">kochi<span class="logo-accent">code</span></span>
+            </a>
             
-            // Subtle mouse parallax effect
-            document.addEventListener("mousemove", (e) => {
-                // Get the center of the window
-                const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
-                const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
-                
-                // Apply the transformation to the container
-                container.style.transform = `translate(${xAxis}px, ${yAxis}px)`;
-            });
+            <nav class="desktop-nav">
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#tech" class="nav-link">Tech Stack</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-btn">Start Project</a>
+            </nav>
+            
+            <div style="display: flex; align-items: center;">
+                <button class="mobile-toggle" aria-label="Toggle Menu" id="mobile-menu-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Dropdown Menu -->
+        <div class="mobile-nav" id="mobile-nav">
+            <a href="#services" class="mobile-link">Services</a>
+            <a href="#tech" class="mobile-link">Tech Stack</a>
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#contact" class="mobile-btn">Start Project</a>
+        </div>
+    </header>
 
-            // Reset position if mouse leaves window
-            document.addEventListener("mouseleave", () => {
-                container.style.transform = `translate(0px, 0px)`;
-            });
-        });
-    </script>
+            <main>
+                <!-- Hero Section -->
+                <section id="hero" class="hero-section">
+                    <div class="container hero-container">
+                        <div class="hero-content animate-on-scroll is-visible">
+                            <h1>We Code the <span class="gradient-text">Future</span> of Digital Innovation</h1>
+                            <p class="hero-subtitle">
+                                kochicode bridges elite system architecture with mesmerizing interfaces. We design, build, and deploy premium, high-impact digital solutions that scale effortlessly.
+                            </p>
+                            <div class="hero-actions">
+                                <a href="#contact" class="btn-primary">
+                                    <span>Get Started</span>
+                                    <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                                <a href="#services" class="btn-secondary">Explore Services</a>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-visual animate-on-scroll stagger-2 is-visible">
+                            <!-- Premium Interactive Terminal -->
+                            <div class="terminal-window">
+                                <div class="terminal-header">
+                                    <div class="terminal-actions">
+                                        <span class="action-btn close"></span>
+                                        <span class="action-btn minimize"></span>
+                                        <span class="action-btn maximize"></span>
+                                    </div>
+                                    <div class="terminal-title">kochicode@terminal: ~</div>
+                                    <div class="terminal-status">
+                                        <span class="status-pulse"></span> online
+                                    </div>
+                                </div>
+                                <div class="terminal-body" id="terminal-output">
+                                    <div class="terminal-line"><span class="line-meta">system:</span> Connecting to kochicode secure server...</div>
+                                    <div class="terminal-line"><span class="line-meta">system:</span> Connection established! Type <span class="cmd-highlight">help</span> or select a command shortcut below to begin.</div>
+                                    <div class="terminal-line"><span class="prompt">kochicode@dev:~$</span> <span class="command-text typed-init"></span><span class="cursor"></span></div>
+                                </div>
+                                <div class="terminal-chips">
+                                    <button class="chip" data-cmd="about">about</button>
+                                    <button class="chip" data-cmd="services">services</button>
+                                    <button class="chip" data-cmd="tech">tech-stack</button>
+                                    <button class="chip" data-cmd="deploy">deploy-demo</button>
+                                    <button class="chip" data-cmd="clear">clear</button>
+                                </div>
+                                <div class="terminal-input-bar">
+                                    <span class="prompt-arrow">&gt;</span>
+                                    <input type="text" id="terminal-user-input" placeholder="Type a command..." autocomplete="off" spellcheck="false">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Services Section -->
+                <section id="services" class="services-section">
+                    <div class="container">
+                        <div class="section-header text-center animate-on-scroll">
+                            <h2 class="section-title">Our <span class="gradient-text">Expertise</span></h2>
+                            <p class="section-subtitle">We craft performant applications that stand the test of time, engineered with modern practices.</p>
+                        </div>
+                        
+                        <div class="carousel-container animate-on-scroll">
+                            <div class="carousel-track">
+                                <!-- Service 1 -->
+                                <div class="service-card card-active" id="service-web" data-index="0">
+                                    <div class="service-icon">
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                                            <polyline points="2 17 12 22 22 17"/>
+                                            <polyline points="2 12 12 17 22 12"/>
+                                        </svg>
+                                    </div>
+                                    <h3>Web & App Development</h3>
+                                    <p>High-fidelity frontend interfaces, ultra-responsive architectures, and scalable single-page apps using modern frameworks. Engineered for performance and flawless UX.</p>
+                                    <ul class="service-bullets">
+                                        <li><span class="bullet-dot"></span> React / Next.js / Vite</li>
+                                        <li><span class="bullet-dot"></span> Smooth WebGL & CSS Micro-animations</li>
+                                        <li><span class="bullet-dot"></span> Seamless API Architectures</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Service 2 -->
+                                <div class="service-card card-next" id="service-cloud" data-index="1">
+                                    <div class="service-icon">
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                        </svg>
+                                    </div>
+                                    <h3>DevOps & Cloud Scale</h3>
+                                    <p>Fully automated CI/CD pipelines, container orchestration, and high-availability serverless deployments that adapt seamlessly to traffic spikes.</p>
+                                    <ul class="service-bullets">
+                                        <li><span class="bullet-dot"></span> Docker & Kubernetes</li>
+                                        <li><span class="bullet-dot"></span> AWS, GCP & Vercel Deployments</li>
+                                        <li><span class="bullet-dot"></span> Infrastructure as Code (Terraform)</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Service 3 -->
+                                <div class="service-card card-prev" id="service-ai" data-index="2">
+                                    <div class="service-icon">
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                                        </svg>
+                                    </div>
+                                    <h3>Intelligent Systems</h3>
+                                    <p>Bridge your platforms with Generative AI, natural language processing, vector databases, and tailor-made agentic automations that multiply productivity.</p>
+                                    <ul class="service-bullets">
+                                        <li><span class="bullet-dot"></span> Custom AI & LLM Pipelines</li>
+                                        <li><span class="bullet-dot"></span> Vector Databases & RAG</li>
+                                        <li><span class="bullet-dot"></span> Business Process Automation</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Service 4 -->
+                                <div class="service-card" id="service-security" data-index="3">
+                                    <div class="service-icon">
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                        </svg>
+                                    </div>
+                                    <h3>Enterprise Security</h3>
+                                    <p>Military-grade encryption, zero-trust architectures, and comprehensive security audits to protect your intellectual property and user data at every layer.</p>
+                                    <ul class="service-bullets">
+                                        <li><span class="bullet-dot"></span> End-to-End Encryption</li>
+                                        <li><span class="bullet-dot"></span> Zero-Trust Access Policies</li>
+                                        <li><span class="bullet-dot"></span> Automated Vulnerability Scanning</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Service 5 -->
+                                <div class="service-card" id="service-design" data-index="4">
+                                    <div class="service-icon">
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                            <path d="M2 12h20"></path>
+                                        </svg>
+                                    </div>
+                                    <h3>UI/UX Design Systems</h3>
+                                    <p>Pixel-perfect layouts, comprehensive design systems, and user-centric workflows that maximize engagement and ensure visual consistency across all endpoints.</p>
+                                    <ul class="service-bullets">
+                                        <li><span class="bullet-dot"></span> Figma Prototyping</li>
+                                        <li><span class="bullet-dot"></span> Motion & Micro-interactions</li>
+                                        <li><span class="bullet-dot"></span> Accessibility & WCAG Compliance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="carousel-controls">
+                                <button class="carousel-btn prev-btn" aria-label="Previous">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+                                <button class="carousel-btn next-btn" aria-label="Next">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Technology Interactive Grid -->
+                <section id="tech" class="tech-section">
+                    <div class="container">
+                        <div class="section-header text-center animate-on-scroll">
+                            <h2 class="section-title">The <span class="gradient-text">Kochicode Stack</span></h2>
+                            <p class="section-subtitle">Click technologies below to see how our tech stack interacts across frontend, backend, and cloud layers.</p>
+                        </div>
+                        
+                        <div class="tech-visual-container">
+                            <div class="tech-stack-selector animate-on-scroll stagger-1">
+                                <button class="tech-node active" data-layer="frontend" data-tech="React">
+                                    <span class="node-icon">⚛️</span>
+                                    <span class="node-name">React</span>
+                                </button>
+                                <button class="tech-node" data-layer="frontend" data-tech="HTML">
+                                    <span class="node-icon">🌐</span>
+                                    <span class="node-name">HTML / CSS / JS</span>
+                                </button>
+                                <button class="tech-node" data-layer="backend" data-tech="Antigravity">
+                                    <span class="node-icon">🚀</span>
+                                    <span class="node-name">Antigravity</span>
+                                </button>
+                                <button class="tech-node" data-layer="backend" data-tech="Codex">
+                                    <span class="node-icon">🧠</span>
+                                    <span class="node-name">Codex</span>
+                                </button>
+                                <button class="tech-node" data-layer="backend" data-tech="Cursor">
+                                    <span class="node-icon">💻</span>
+                                    <span class="node-name">Cursor</span>
+                                </button>
+                                <button class="tech-node" data-layer="cloud" data-tech="Supabase">
+                                    <span class="node-icon">⚡</span>
+                                    <span class="node-name">Supabase</span>
+                                </button>
+                                <button class="tech-node" data-layer="cloud" data-tech="Firebase">
+                                    <span class="node-icon">🔥</span>
+                                    <span class="node-name">Firebase</span>
+                                </button>
+                            </div>
+
+                            <div class="tech-layer-display animate-on-scroll stagger-2">
+                                <!-- Dynamic lines and visual status will update here -->
+                                <div class="layer-card" id="layer-frontend">
+                                    <div class="layer-tag">Layer 01</div>
+                                    <h4>Frontend Core</h4>
+                                    <p>Delivers immersive, fast, and highly responsive user interfaces directly to your users. Leverages modern JavaScript ecosystems and custom styling logic for pixel-perfect glassmorphism and native smooth scrolling.</p>
+                                    <div class="layer-badges">
+                                        <span class="badge-pill">Vitals-Optimized</span>
+                                        <span class="badge-pill">Component Architecture</span>
+                                        <span class="badge-pill">Fluid Motion</span>
+                                    </div>
+                                </div>
+
+                                <div class="layer-card" id="layer-backend">
+                                    <div class="layer-tag">Layer 02</div>
+                                    <h4>AI & Agentic Tooling</h4>
+                                    <p>Powers our development engine using cutting-edge autonomous agents and deep-learning copilots. Ensures highly optimized, secure, and structurally flawless code generation at lightspeed.</p>
+                                    <div class="layer-badges">
+                                        <span class="badge-pill">LLM Driven</span>
+                                        <span class="badge-pill">Advanced AI Copilots</span>
+                                        <span class="badge-pill">Rapid Prototyping</span>
+                                    </div>
+                                </div>
+
+                                <div class="layer-card" id="layer-cloud">
+                                    <div class="layer-tag">Layer 03</div>
+                                    <h4>Database & Authentication</h4>
+                                    <p>Orchestrates scalable database architecture, real-time sync, and enterprise-grade security rules. Provides seamless edge distribution and bulletproof user identity management.</p>
+                                    <div class="layer-badges">
+                                        <span class="badge-pill">Real-Time Sync</span>
+                                        <span class="badge-pill">PostgreSQL & NoSQL</span>
+                                        <span class="badge-pill">Secure Auth</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Dynamic Case Studies Carousel / Highlight -->
+                <section id="about" class="about-section">
+                    <div class="container">
+                        <div class="about-grid">
+                            <div class="about-content animate-on-scroll stagger-1">
+                                <div class="badge">
+                                    <span class="badge-dot"></span>
+                                    <span class="badge-text">Inside Kochicode</span>
+                                </div>
+                                <h2>Engineered to Build, <span class="gradient-text">Designed to Wow</span></h2>
+                                <p>At kochicode, we don't just code widgets. We construct long-term digital foundations. We are a boutique engineering hub where elite system designers collaborate with visual designers to build clean, functional, and secure environments.</p>
+                                
+                                <div class="metrics-grid">
+                                    <div class="metric-item">
+                                        <div class="metric-value">99.9%</div>
+                                        <div class="metric-label">Uptime Architecture</div>
+                                    </div>
+                                    <div class="metric-item">
+                                        <div class="metric-value">60fps</div>
+                                        <div class="metric-label">Frontend Animation Specs</div>
+                                    </div>
+                                    <div class="metric-item">
+                                        <div class="metric-value">12+</div>
+                                        <div class="metric-label">Global Enterprise Platforms</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="about-visual animate-on-scroll stagger-2">
+                                <div class="system-monitor-box">
+                                    <div class="monitor-header">
+                                        <span class="monitor-dot"></span>
+                                        <span class="monitor-dot"></span>
+                                        <span class="monitor-dot"></span>
+                                        <span class="monitor-title">System Metrics Visualizer</span>
+                                    </div>
+                                    <div class="monitor-content">
+                                        <div class="graph-row">
+                                            <span class="graph-label">CPU LOAD</span>
+                                            <div class="graph-bar-container">
+                                                <div class="graph-bar" style="width: 32%"></div>
+                                            </div>
+                                            <span class="graph-val">32%</span>
+                                        </div>
+                                        <div class="graph-row">
+                                            <span class="graph-label">MEM LOAD</span>
+                                            <div class="graph-bar-container">
+                                                <div class="graph-bar glow-purple" style="width: 58%"></div>
+                                            </div>
+                                            <span class="graph-val">58%</span>
+                                        </div>
+                                        <div class="graph-row">
+                                            <span class="graph-label">NETWORK</span>
+                                            <div class="graph-bar-container">
+                                                <div class="graph-bar glow-blue" style="width: 87%"></div>
+                                            </div>
+                                            <span class="graph-val">87%</span>
+                                        </div>
+                                        <div class="console-box">
+                                            <div class="console-title">// ACTIVE SERVICES STATUS</div>
+                                            <div class="console-logs">
+                                                <div class="log-line"><span class="log-ok">[ OK ]</span> frontend_v2_prod is active and listening</div>
+                                                <div class="log-line"><span class="log-ok">[ OK ]</span> db_cluster_primary health check positive</div>
+                                                <div class="log-line"><span class="log-warn">[ INFO ]</span> api_cache initialized (3.12ms cold boot)</div>
+                                                <div class="log-line"><span class="log-ok">[ OK ]</span> cron_autoscaler deployed successfully</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Onboarding & Contact Section with Mode Switcher -->
+                <section id="contact" class="contact-section">
+                    <div class="container contact-container">
+                        <div class="contact-info animate-on-scroll stagger-1">
+                            <h2>Initiate a <span class="gradient-text">Project</span></h2>
+                            <p>Have an ambitious project in mind? We're ready to engineer it. Switch the onboarding interface to suit your style: choose between our polished, standard web form or our immersive interactive CLI onboarding.</p>
+                            
+                            <div class="mode-toggles">
+                                <button class="mode-toggle-btn active" id="btn-mode-standard">
+                                    <span class="toggle-icon">📋</span>
+                                    <span class="toggle-label">Standard Form</span>
+                                </button>
+                                <button class="mode-toggle-btn" id="btn-mode-terminal">
+                                    <span class="toggle-icon">⚡</span>
+                                    <span class="toggle-label">Developer Terminal CLI</span>
+                                </button>
+                            </div>
+
+                            <div class="contact-highlights">
+                                <div class="highlight-item">
+                                    <div class="highlight-icon">⏱️</div>
+                                    <div>
+                                        <h5>Rapid Response</h5>
+                                        <p>Receive a comprehensive architectural breakdown in 24 hours.</p>
+                                    </div>
+                                </div>
+                                <div class="highlight-item">
+                                    <div class="highlight-icon">🛡️</div>
+                                    <div>
+                                        <h5>Full Sandbox Demo</h5>
+                                        <p>Every project starts with a fully interactive prototyping phase.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-container glass-panel animate-on-scroll stagger-2">
+                            <!-- Standard Web Form -->
+                            <form id="standard-contact-form" class="active-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="client-name">Your Name</label>
+                                        <input type="text" id="client-name" placeholder="John Doe" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="client-email">Email Address</label>
+                                        <input type="email" id="client-email" placeholder="john@example.com" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="project-type">Project Scale</label>
+                                    <select id="project-type">
+                                        <option value="web-app">SaaS / Web App</option>
+                                        <option value="cloud-infra">Cloud & DevOps Migration</option>
+                                        <option value="ai-intelligene">Intelligent Automation / AI</option>
+                                        <option value="full-stack">Full System Engineering</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="client-msg">Project Summary</label>
+                                    <textarea id="client-msg" rows="5" placeholder="Tell us about what you want to build..." required></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn" id="btn-form-submit">
+                                    <span>Launch Project Request</span>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="22" y1="2" x2="11" y2="13"/>
+                                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                                    </svg>
+                                </button>
+                            </form>
+
+                            <!-- Terminal Interactive CLI Wizard -->
+                            <div id="terminal-contact-form" class="terminal-wizard-box">
+                                <div class="wizard-header">
+                                    <span class="wizard-dir">~ / onboard-wizard.sh</span>
+                                    <span class="wizard-badge">interactive-session</span>
+                                </div>
+                                <div class="wizard-terminal-body" id="wizard-terminal-output">
+                                    <div class="wizard-line"><span class="w-accent">[$]</span> Launching kochicode onboarding wizard v1.4...</div>
+                                    <div class="wizard-line"><span class="w-accent">[$]</span> Step 1: What is your name?</div>
+                                </div>
+                                <div class="wizard-input-bar">
+                                    <span class="wizard-prompt">name &gt;</span>
+                                    <input type="text" id="wizard-user-input" placeholder="Type here and press Enter..." autocomplete="off">
+                                </div>
+                                <div class="wizard-shortcuts" id="wizard-shortcuts-panel">
+                                    <!-- Helper chips for simple wizard interactions -->
+                                </div>
+                            </div>
+
+                            <!-- Success State (Shared) -->
+                            <div id="form-success-state" class="form-success-box">
+                                <div class="success-icon-wrapper">
+                                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                                    </svg>
+                                </div>
+                                <h3>Project Request Injected!</h3>
+                                <p>Your request has been piped directly to our senior architects. We are compiling your proposal and will follow up within 24 hours.</p>
+                                <button type="button" class="reset-btn" id="btn-form-reset">Submit Another Request</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Footer -->
+            <footer>
+                <div class="container footer-container">
+                    <div class="footer-brand">
+                        <a href="#" class="logo">
+                            <span class="logo-text">kochi<span class="logo-accent">code</span></span>
+                        </a>
+                        <p>Translating architectural code concepts into highly responsive, visually stunning systems.</p>
+                    </div>
+                    
+                    <div class="footer-links-group">
+                        <div class="footer-links">
+                            <h5>Platform</h5>
+                            <a href="#services">Services</a>
+                            <a href="#tech">Tech Stack</a>
+                            <a href="#about">About Us</a>
+                        </div>
+                        <div class="footer-links">
+                            <h5>Connect</h5>
+                            <a href="mailto:hello@kochicode.dev">hello@kochicode.dev</a>
+                            <a href="#">GitHub</a>
+                            <a href="#">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="container footer-bottom">
+                    <p>&copy; 2026 kochicode. All rights reserved. // Secure Connection (TLS 1.3)</p>
+                    <p class="footer-status"><span class="status-pulse"></span> All Systems Operational</p>
+                </div>
+            </footer>
+
+    <!-- Script Entry -->
+    <script src="app.js"></script>
 </body>
 </html>
