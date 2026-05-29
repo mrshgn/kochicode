@@ -551,7 +551,8 @@ ul {
 
 .terminal-line {
     margin-bottom: 8px;
-    word-break: break-all;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .line-meta {
@@ -1668,6 +1669,19 @@ footer {
 @media (max-width: 480px) {
     .hero-content h1 {
         font-size: 38px;
+    }
+    
+    .terminal-body {
+        padding: 12px;
+        font-size: 11px;
+    }
+    
+    .terminal-header {
+        padding: 0 10px;
+    }
+    
+    .terminal-chips {
+        padding: 8px 10px;
     }
     
     .hero-actions {
