@@ -822,7 +822,123 @@ ul {
     background: var(--accent-violet);
 }
 
-/* --- Tech Section --- */
+/* --- Portfolio Section --- */
+.portfolio-section {
+    padding: 120px 0;
+    position: relative;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 64px;
+}
+
+.portfolio-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: var(--transition-smooth);
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-teal);
+    box-shadow: var(--shadow-glow);
+}
+
+.portfolio-preview {
+    background: rgba(15, 23, 42, 0.8);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.05);
+    overflow: hidden;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+}
+
+.browser-bar {
+    height: 28px;
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 6px;
+}
+
+.browser-bar .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.dot.close { background-color: #FF5F56; }
+.dot.min { background-color: #FFBD2E; }
+.dot.max { background-color: #27C93F; }
+
+.preview-placeholder {
+    flex-grow: 1;
+    background-size: cover;
+    background-position: top center;
+    opacity: 0.7;
+    transition: opacity 0.5s ease;
+}
+
+.portfolio-card:hover .preview-placeholder {
+    opacity: 1;
+}
+
+/* Static Project Snaps */
+.preview-1 { background-image: url('assets/snap_tharians.png'); }
+.preview-2 { background-image: url('assets/snap_jwellery.png'); }
+.preview-3 { background-image: url('assets/snap_providence.png'); }
+
+.portfolio-info {
+    padding: 0 8px 8px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.portfolio-info h4 {
+    font-size: 20px;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.portfolio-info p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.visit-link {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-teal);
+    transition: var(--transition-smooth);
+}
+
+.portfolio-card:hover .visit-link {
+    color: var(--text-primary);
+    gap: 10px;
+}
+
+/* --- Contact Section --- */
 .tech-section {
     padding: 80px 0;
     position: relative;
@@ -1623,6 +1739,10 @@ footer {
         gap: 48px;
     }
     
+    .portfolio-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
     .contact-container {
         grid-template-columns: 1fr;
         gap: 48px;
@@ -1643,6 +1763,10 @@ footer {
     }
     
     .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .portfolio-grid {
         grid-template-columns: 1fr;
     }
     
