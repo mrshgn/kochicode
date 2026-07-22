@@ -1,24 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="kochicode - Next-generation software development agency. We craft high-performance websites, scalable cloud infrastructure, and intelligent software tailored to scale.">
-    <meta name="keywords" content="kochicode, software agency, web development, custom software, cloud devops, AI integration, app developers">
+    <meta name="description"
+        content="kochicode - Next-generation software development agency. We craft high-performance websites, scalable cloud infrastructure, and intelligent software tailored to scale.">
+    <meta name="keywords"
+        content="kochicode, software agency, web development, custom software, cloud devops, AI integration, app developers">
     <meta name="author" content="kochicode">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="assets/new_favicon.png">
     <title>kochicode | Engineering the Future of Software</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
+
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    
+
 </head>
+
 <body>
+
+    <!-- Glass Lens Cursor Effect -->
+    <div id="glass-lens" class="glass-lens">
+        <div class="glass-lens-inner"></div>
+        <div class="glass-lens-highlight"></div>
+    </div>
+
+    <!-- SVG filter for refraction distortion -->
+    <svg class="glass-svg-filters" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="glass-distort">
+                <feTurbulence type="turbulence" baseFrequency="0.015" numOctaves="3" result="turbulence" seed="2" />
+                <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="4" xChannelSelector="R"
+                    yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <img src="assets/new_favicon.png" alt="kochicode logo" class="loading-logo">
+            <div class="loading-indicator">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Ambient Background Effects -->
     <div class="tech-grid-background"></div>
     <div class="decorative-scanline"></div>
@@ -27,557 +66,124 @@
     <div class="ambient-glow glow-3"></div>
 
     <!-- Navigation Header -->
-    <header id="main-header" class="glass-nav">
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <span class="logo-text">kochi<span class="logo-accent">code</span></span>
-            </a>
-            
-            <nav class="desktop-nav">
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#tech" class="nav-link">Tech Stack</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-btn">Start Project</a>
-            </nav>
-            
-            <div style="display: flex; align-items: center;">
-                <button class="mobile-toggle" aria-label="Toggle Menu" id="mobile-menu-toggle">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </button>
+    <header id="nav-wrapper" class="nav-wrapper">
+        <div class="glass-pill" id="glass-pill">
+            <div class="container nav-container">
+                <a href="#" class="logo">
+                    <img src="assets/new_favicon.png" alt="kochicode logo" class="header-logo">
+                </a>
+
+                <nav class="desktop-nav">
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#tech" class="nav-link">Tech Stack</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#contact" class="btn-pill">Let's Talk</a>
+                </nav>
+
+                <div style="display: flex; align-items: center;">
+                    <button class="mobile-toggle" aria-label="Toggle Menu" id="mobile-menu-toggle">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </button>
+                </div>
             </div>
-        </div>
-        
-        <!-- Mobile Dropdown Menu -->
-        <div class="mobile-nav" id="mobile-nav">
-            <a href="#services" class="mobile-link">Services</a>
-            <a href="#tech" class="mobile-link">Tech Stack</a>
-            <a href="#about" class="mobile-link">About</a>
-            <a href="#contact" class="mobile-btn">Start Project</a>
+
+            <!-- Mobile Dropdown Menu -->
+            <div class="mobile-nav" id="mobile-nav">
+                <a href="#services" class="mobile-link">Services</a>
+                <a href="#tech" class="mobile-link">Tech Stack</a>
+                <a href="#about" class="mobile-link">About</a>
+                <a href="#contact" class="btn-pill" style="margin-top: 20px;">Let's Talk</a>
+            </div>
         </div>
     </header>
 
-            <main>
-                <!-- Hero Section -->
-                <section id="hero" class="hero-section">
-                    <div class="container hero-container">
-                        <div class="hero-content animate-on-scroll is-visible">
-                            <h1>We Code the <span class="gradient-text">Future</span> of Digital Innovation</h1>
-                            <p class="hero-subtitle">
-                                kochicode bridges elite system architecture with mesmerizing interfaces. We design, build, and deploy premium, high-impact digital solutions that scale effortlessly.
-                            </p>
-                            <div class="hero-actions">
-                                <a href="#contact" class="btn-primary">
-                                    <span>Get Started</span>
-                                    <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </a>
-                                <a href="#services" class="btn-secondary">Explore Services</a>
-                            </div>
-                        </div>
-                        
-                        <div class="hero-visual animate-on-scroll stagger-2 is-visible">
-                            <!-- Premium Interactive Terminal -->
-                            <div class="terminal-window">
-                                <div class="terminal-header">
-                                    <div class="terminal-actions">
-                                        <span class="action-btn close"></span>
-                                        <span class="action-btn minimize"></span>
-                                        <span class="action-btn maximize"></span>
-                                    </div>
-                                    <div class="terminal-title">kochicode@terminal: ~</div>
-                                    <div class="terminal-status">
-                                        <span class="status-pulse"></span> online
-                                    </div>
-                                </div>
-                                <div class="terminal-body" id="terminal-output">
-                                    <div class="terminal-line"><span class="line-meta">system:</span> Connecting to kochicode secure server...</div>
-                                    <div class="terminal-line"><span class="line-meta">system:</span> Connection established! Type <span class="cmd-highlight">help</span> or select a command shortcut below to begin.</div>
-                                    <div class="terminal-line"><span class="prompt">kochicode@dev:~$</span> <span class="command-text typed-init"></span><span class="cursor"></span></div>
-                                </div>
-                                <div class="terminal-chips">
-                                    <button class="chip" data-cmd="about">about</button>
-                                    <button class="chip" data-cmd="services">services</button>
-                                    <button class="chip" data-cmd="tech">tech-stack</button>
-                                    <button class="chip" data-cmd="deploy">deploy-demo</button>
-                                    <button class="chip" data-cmd="clear">clear</button>
-                                </div>
-                                <div class="terminal-input-bar">
-                                    <span class="prompt-arrow">&gt;</span>
-                                    <input type="text" id="terminal-user-input" placeholder="Type a command..." autocomplete="off" spellcheck="false">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+    <main>
+        <!-- Grainient Hero Section -->
+        <section id="hero-sequence" class="hero-sequence">
+            <!-- Background -->
+            <div id="grainient-container" class="grainient-container"></div>
 
-                <!-- Services Section -->
-                <section id="services" class="services-section">
-                    <div class="container">
-                        <div class="section-header text-center animate-on-scroll">
-                            <h2 class="section-title">Our <span class="gradient-text">Expertise</span></h2>
-                            <p class="section-subtitle">We craft performant applications that stand the test of time, engineered with modern practices.</p>
-                        </div>
-                        
-                        <div class="carousel-container animate-on-scroll">
-                            <div class="carousel-track">
-                                <!-- Service 1 -->
-                                <div class="service-card card-active" id="service-web" data-index="0">
-                                    <div class="service-icon">
-                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-                                            <polyline points="2 17 12 22 22 17"/>
-                                            <polyline points="2 12 12 17 22 12"/>
-                                        </svg>
-                                    </div>
-                                    <h3>Web & App Development</h3>
-                                    <p>High-fidelity frontend interfaces, ultra-responsive architectures, and scalable single-page apps using modern frameworks. Engineered for performance and flawless UX.</p>
-                                    <ul class="service-bullets">
-                                        <li><span class="bullet-dot"></span> React / Next.js / Vite</li>
-                                        <li><span class="bullet-dot"></span> Smooth WebGL & CSS Micro-animations</li>
-                                        <li><span class="bullet-dot"></span> Seamless API Architectures</li>
-                                    </ul>
-                                </div>
-
-                                <!-- Service 2 -->
-                                <div class="service-card card-next" id="service-cloud" data-index="1">
-                                    <div class="service-icon">
-                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                                        </svg>
-                                    </div>
-                                    <h3>DevOps & Cloud Scale</h3>
-                                    <p>Fully automated CI/CD pipelines, container orchestration, and high-availability serverless deployments that adapt seamlessly to traffic spikes.</p>
-                                    <ul class="service-bullets">
-                                        <li><span class="bullet-dot"></span> Docker & Kubernetes</li>
-                                        <li><span class="bullet-dot"></span> AWS, GCP & Vercel Deployments</li>
-                                        <li><span class="bullet-dot"></span> Infrastructure as Code (Terraform)</li>
-                                    </ul>
-                                </div>
-
-                                <!-- Service 3 -->
-                                <div class="service-card card-prev" id="service-ai" data-index="2">
-                                    <div class="service-icon">
-                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                                            <line x1="12" y1="22.08" x2="12" y2="12"/>
-                                        </svg>
-                                    </div>
-                                    <h3>Intelligent Systems</h3>
-                                    <p>Bridge your platforms with Generative AI, natural language processing, vector databases, and tailor-made agentic automations that multiply productivity.</p>
-                                    <ul class="service-bullets">
-                                        <li><span class="bullet-dot"></span> Custom AI & LLM Pipelines</li>
-                                        <li><span class="bullet-dot"></span> Vector Databases & RAG</li>
-                                        <li><span class="bullet-dot"></span> Business Process Automation</li>
-                                    </ul>
-                                </div>
-
-                                <!-- Service 4 -->
-                                <div class="service-card" id="service-security" data-index="3">
-                                    <div class="service-icon">
-                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                        </svg>
-                                    </div>
-                                    <h3>Enterprise Security</h3>
-                                    <p>Military-grade encryption, zero-trust architectures, and comprehensive security audits to protect your intellectual property and user data at every layer.</p>
-                                    <ul class="service-bullets">
-                                        <li><span class="bullet-dot"></span> End-to-End Encryption</li>
-                                        <li><span class="bullet-dot"></span> Zero-Trust Access Policies</li>
-                                        <li><span class="bullet-dot"></span> Automated Vulnerability Scanning</li>
-                                    </ul>
-                                </div>
-
-                                <!-- Service 5 -->
-                                <div class="service-card" id="service-design" data-index="4">
-                                    <div class="service-icon">
-                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <circle cx="12" cy="12" r="10"></circle>
-                                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                                            <path d="M2 12h20"></path>
-                                        </svg>
-                                    </div>
-                                    <h3>UI/UX Design Systems</h3>
-                                    <p>Pixel-perfect layouts, comprehensive design systems, and user-centric workflows that maximize engagement and ensure visual consistency across all endpoints.</p>
-                                    <ul class="service-bullets">
-                                        <li><span class="bullet-dot"></span> Figma Prototyping</li>
-                                        <li><span class="bullet-dot"></span> Motion & Micro-interactions</li>
-                                        <li><span class="bullet-dot"></span> Accessibility & WCAG Compliance</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="carousel-controls">
-                                <button class="carousel-btn prev-btn" aria-label="Previous">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                                </button>
-                                <button class="carousel-btn next-btn" aria-label="Next">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Technology Interactive Grid -->
-                <section id="tech" class="tech-section">
-                    <div class="container">
-                        <div class="section-header text-center animate-on-scroll">
-                            <h2 class="section-title">The <span class="gradient-text">Kochicode Stack</span></h2>
-                            <p class="section-subtitle">Click technologies below to see how our tech stack interacts across frontend, backend, and cloud layers.</p>
-                        </div>
-                        
-                        <div class="tech-visual-container">
-                            <div class="tech-stack-selector animate-on-scroll stagger-1">
-                                <button class="tech-node active" data-layer="frontend" data-tech="React">
-                                    <span class="node-icon"><svg width="20" height="20" viewBox="-11.5 -10.23174 23 20.46348" fill="currentColor"><circle cx="0" cy="0" r="2.05" /><g stroke="currentColor" stroke-width="1" fill="none"><ellipse rx="11" ry="4.2" /><ellipse rx="11" ry="4.2" transform="rotate(60)" /><ellipse rx="11" ry="4.2" transform="rotate(120)" /></g></svg></span>
-                                    <span class="node-name">React</span>
-                                </button>
-                                <button class="tech-node" data-layer="frontend" data-tech="HTML">
-                                    <span class="node-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span>
-                                    <span class="node-name">HTML / CSS / JS</span>
-                                </button>
-                                <button class="tech-node" data-layer="backend" data-tech="Antigravity">
-                                    <span class="node-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg></span>
-                                    <span class="node-name">Antigravity</span>
-                                </button>
-                                <button class="tech-node" data-layer="backend" data-tech="Codex">
-                                    <span class="node-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg></span>
-                                    <span class="node-name">Codex</span>
-                                </button>
-                                <button class="tech-node" data-layer="backend" data-tech="Cursor">
-                                    <span class="node-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 8h16"/><path d="M8 4v4"/><path d="M9 14l3 3 3-3"/></svg></span>
-                                    <span class="node-name">Cursor</span>
-                                </button>
-                                <button class="tech-node" data-layer="cloud" data-tech="Supabase">
-                                    <span class="node-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path></svg></span>
-                                    <span class="node-name">Supabase</span>
-                                </button>
-                                <button class="tech-node" data-layer="cloud" data-tech="Firebase">
-                                    <span class="node-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg></span>
-                                    <span class="node-name">Firebase</span>
-                                </button>
-                            </div>
-
-                            <div class="tech-layer-display animate-on-scroll stagger-2">
-                                <!-- Dynamic lines and visual status will update here -->
-                                <div class="layer-card" id="layer-frontend">
-                                    <div class="layer-tag">Layer 01</div>
-                                    <h4>Frontend Core</h4>
-                                    <p>Delivers immersive, fast, and highly responsive user interfaces directly to your users. Leverages modern JavaScript ecosystems and custom styling logic for pixel-perfect glassmorphism and native smooth scrolling.</p>
-                                    <div class="layer-badges">
-                                        <span class="badge-pill">Vitals-Optimized</span>
-                                        <span class="badge-pill">Component Architecture</span>
-                                        <span class="badge-pill">Fluid Motion</span>
-                                    </div>
-                                </div>
-
-                                <div class="layer-card" id="layer-backend">
-                                    <div class="layer-tag">Layer 02</div>
-                                    <h4>AI & Agentic Tooling</h4>
-                                    <p>Powers our development engine using cutting-edge autonomous agents and deep-learning copilots. Ensures highly optimized, secure, and structurally flawless code generation at lightspeed.</p>
-                                    <div class="layer-badges">
-                                        <span class="badge-pill">LLM Driven</span>
-                                        <span class="badge-pill">Advanced AI Copilots</span>
-                                        <span class="badge-pill">Rapid Prototyping</span>
-                                    </div>
-                                </div>
-
-                                <div class="layer-card" id="layer-cloud">
-                                    <div class="layer-tag">Layer 03</div>
-                                    <h4>Database & Authentication</h4>
-                                    <p>Orchestrates scalable database architecture, real-time sync, and enterprise-grade security rules. Provides seamless edge distribution and bulletproof user identity management.</p>
-                                    <div class="layer-badges">
-                                        <span class="badge-pill">Real-Time Sync</span>
-                                        <span class="badge-pill">PostgreSQL & NoSQL</span>
-                                        <span class="badge-pill">Secure Auth</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Dynamic Case Studies Carousel / Highlight -->
-                <section id="about" class="about-section">
-                    <div class="container">
-                        <div class="about-grid">
-                            <div class="about-content animate-on-scroll stagger-1">
-                                <div class="badge">
-                                    <span class="badge-dot"></span>
-                                    <span class="badge-text">Inside Kochicode</span>
-                                </div>
-                                <h2>Engineered to Build, <span class="gradient-text">Designed to Wow</span></h2>
-                                <p>At kochicode, we don't just code widgets. We construct long-term digital foundations. We are a boutique engineering hub where elite system designers collaborate with visual designers to build clean, functional, and secure environments.</p>
-                                
-                                <div class="metrics-grid">
-                                    <div class="metric-item">
-                                        <div class="metric-value">99.9%</div>
-                                        <div class="metric-label">Uptime Architecture</div>
-                                    </div>
-                                    <div class="metric-item">
-                                        <div class="metric-value">60fps</div>
-                                        <div class="metric-label">Frontend Animation Specs</div>
-                                    </div>
-                                    <div class="metric-item">
-                                        <div class="metric-value">12+</div>
-                                        <div class="metric-label">Global Enterprise Platforms</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="about-visual animate-on-scroll stagger-2">
-                                <div class="system-monitor-box">
-                                    <div class="monitor-header">
-                                        <span class="monitor-dot"></span>
-                                        <span class="monitor-dot"></span>
-                                        <span class="monitor-dot"></span>
-                                        <span class="monitor-title">System Metrics Visualizer</span>
-                                    </div>
-                                    <div class="monitor-content">
-                                        <div class="graph-row">
-                                            <span class="graph-label">CPU LOAD</span>
-                                            <div class="graph-bar-container">
-                                                <div class="graph-bar" style="width: 32%"></div>
-                                            </div>
-                                            <span class="graph-val">32%</span>
-                                        </div>
-                                        <div class="graph-row">
-                                            <span class="graph-label">MEM LOAD</span>
-                                            <div class="graph-bar-container">
-                                                <div class="graph-bar glow-purple" style="width: 58%"></div>
-                                            </div>
-                                            <span class="graph-val">58%</span>
-                                        </div>
-                                        <div class="graph-row">
-                                            <span class="graph-label">NETWORK</span>
-                                            <div class="graph-bar-container">
-                                                <div class="graph-bar glow-blue" style="width: 87%"></div>
-                                            </div>
-                                            <span class="graph-val">87%</span>
-                                        </div>
-                                        <div class="console-box">
-                                            <div class="console-title">// ACTIVE SERVICES STATUS</div>
-                                            <div class="console-logs">
-                                                <div class="log-line"><span class="log-ok">[ OK ]</span> frontend_v2_prod is active and listening</div>
-                                                <div class="log-line"><span class="log-ok">[ OK ]</span> db_cluster_primary health check positive</div>
-                                                <div class="log-line"><span class="log-warn">[ INFO ]</span> api_cache initialized (3.12ms cold boot)</div>
-                                                <div class="log-line"><span class="log-ok">[ OK ]</span> cron_autoscaler deployed successfully</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Proof of Work / Portfolio -->
-                <section id="portfolio" class="portfolio-section">
-                    <div class="container">
-                        <div class="section-header text-center animate-on-scroll">
-                            <h2 class="section-title">Proof of <span class="gradient-text">Work</span></h2>
-                            <p class="section-subtitle">A curated selection of our most recent high-performance digital deployments.</p>
-                        </div>
-                        
-                        <div class="portfolio-grid">
-                            <!-- Project 1 -->
-                            <a href="https://tharians.azamon.xyz/" target="_blank" class="portfolio-card animate-on-scroll stagger-1">
-                                <div class="portfolio-preview">
-                                    <div class="browser-bar">
-                                        <span class="dot close"></span>
-                                        <span class="dot min"></span>
-                                        <span class="dot max"></span>
-                                    </div>
-                                    <div class="preview-placeholder preview-1"></div>
-                                </div>
-                                <div class="portfolio-info">
-                                    <h4>Tharians</h4>
-                                    <p>Immersive brand experience & digital storefront.</p>
-                                    <span class="visit-link">Visit Site <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                                </div>
-                            </a>
-
-                            <!-- Project 2 -->
-                            <a href="https://jwellery.azamon.xyz/" target="_blank" class="portfolio-card animate-on-scroll stagger-2">
-                                <div class="portfolio-preview">
-                                    <div class="browser-bar">
-                                        <span class="dot close"></span>
-                                        <span class="dot min"></span>
-                                        <span class="dot max"></span>
-                                    </div>
-                                    <div class="preview-placeholder preview-2"></div>
-                                </div>
-                                <div class="portfolio-info">
-                                    <h4>Jwellery Showcase</h4>
-                                    <p>High-fidelity eCommerce interface with fluid interactions.</p>
-                                    <span class="visit-link">Visit Site <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                                </div>
-                            </a>
-
-                            <!-- Project 3 -->
-                            <a href="https://providence.azamon.xyz/" target="_blank" class="portfolio-card animate-on-scroll stagger-3">
-                                <div class="portfolio-preview">
-                                    <div class="browser-bar">
-                                        <span class="dot close"></span>
-                                        <span class="dot min"></span>
-                                        <span class="dot max"></span>
-                                    </div>
-                                    <div class="preview-placeholder preview-3"></div>
-                                </div>
-                                <div class="portfolio-info">
-                                    <h4>Providence</h4>
-                                    <p>Enterprise-grade web application architecture.</p>
-                                    <span class="visit-link">Visit Site <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Onboarding & Contact Section with Mode Switcher -->
-                <section id="contact" class="contact-section">
-                    <div class="container contact-container">
-                        <div class="contact-info animate-on-scroll stagger-1">
-                            <h2>Initiate a <span class="gradient-text">Project</span></h2>
-                            <p>Have an ambitious project in mind? We're ready to engineer it. Switch the onboarding interface to suit your style: choose between our polished, standard web form or our immersive interactive CLI onboarding.</p>
-                            
-                            <div class="mode-toggles">
-                                <button class="mode-toggle-btn active" id="btn-mode-standard">
-                                    <span class="toggle-icon">📋</span>
-                                    <span class="toggle-label">Standard Form</span>
-                                </button>
-                                <button class="mode-toggle-btn" id="btn-mode-terminal">
-                                    <span class="toggle-icon">⚡</span>
-                                    <span class="toggle-label">Developer Terminal CLI</span>
-                                </button>
-                            </div>
-
-                            <div class="contact-highlights">
-                                <div class="highlight-item">
-                                    <div class="highlight-icon">⏱️</div>
-                                    <div>
-                                        <h5>Rapid Response</h5>
-                                        <p>Receive a comprehensive architectural breakdown in 24 hours.</p>
-                                    </div>
-                                </div>
-                                <div class="highlight-item">
-                                    <div class="highlight-icon">🛡️</div>
-                                    <div>
-                                        <h5>Full Sandbox Demo</h5>
-                                        <p>Every project starts with a fully interactive prototyping phase.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="contact-form-container glass-panel animate-on-scroll stagger-2">
-                            <!-- Standard Web Form -->
-                            <form id="standard-contact-form" class="active-form">
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="client-name">Your Name</label>
-                                        <input type="text" id="client-name" placeholder="John Doe" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="client-email">Email Address</label>
-                                        <input type="email" id="client-email" placeholder="john@example.com" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="project-type">Project Scale</label>
-                                    <select id="project-type">
-                                        <option value="web-app">SaaS / Web App</option>
-                                        <option value="cloud-infra">Cloud & DevOps Migration</option>
-                                        <option value="ai-intelligene">Intelligent Automation / AI</option>
-                                        <option value="full-stack">Full System Engineering</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="client-msg">Project Summary</label>
-                                    <textarea id="client-msg" rows="5" placeholder="Tell us about what you want to build..." required></textarea>
-                                </div>
-                                <button type="submit" class="submit-btn" id="btn-form-submit">
-                                    <span>Launch Project Request</span>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="22" y1="2" x2="11" y2="13"/>
-                                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                                    </svg>
-                                </button>
-                            </form>
-
-                            <!-- Terminal Interactive CLI Wizard -->
-                            <div id="terminal-contact-form" class="terminal-wizard-box">
-                                <div class="wizard-header">
-                                    <span class="wizard-dir">~ / onboard-wizard.sh</span>
-                                    <span class="wizard-badge">interactive-session</span>
-                                </div>
-                                <div class="wizard-terminal-body" id="wizard-terminal-output">
-                                    <div class="wizard-line"><span class="w-accent">[$]</span> Launching kochicode onboarding wizard v1.4...</div>
-                                    <div class="wizard-line"><span class="w-accent">[$]</span> Step 1: What is your name?</div>
-                                </div>
-                                <div class="wizard-input-bar">
-                                    <span class="wizard-prompt">name &gt;</span>
-                                    <input type="text" id="wizard-user-input" placeholder="Type here and press Enter..." autocomplete="off">
-                                </div>
-                                <div class="wizard-shortcuts" id="wizard-shortcuts-panel">
-                                    <!-- Helper chips for simple wizard interactions -->
-                                </div>
-                            </div>
-
-                            <!-- Success State (Shared) -->
-                            <div id="form-success-state" class="form-success-box">
-                                <div class="success-icon-wrapper">
-                                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-                                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                                    </svg>
-                                </div>
-                                <h3>Project Request Injected!</h3>
-                                <p>Your request has been piped directly to our senior architects. We are compiling your proposal and will follow up within 24 hours.</p>
-                                <button type="button" class="reset-btn" id="btn-form-reset">Submit Another Request</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
-
-            <!-- Footer -->
-            <footer>
-                <div class="container footer-container">
-                    <div class="footer-brand">
-                        <a href="#" class="logo">
-                            <span class="logo-text">kochi<span class="logo-accent">code</span></span>
-                        </a>
-                        <p>Translating architectural code concepts into highly responsive, visually stunning systems.</p>
-                    </div>
-                    
-                    <div class="footer-links-group">
-                        <div class="footer-links">
-                            <h5>Platform</h5>
-                            <a href="#services">Services</a>
-                            <a href="#tech">Tech Stack</a>
-                            <a href="#about">About Us</a>
-                        </div>
-                        <div class="footer-links">
-                            <h5>Connect</h5>
-                            <a href="mailto:hello@kochicode.dev">hello@kochicode.dev</a>
-                            <a href="#">GitHub</a>
-                            <a href="#">LinkedIn</a>
-                        </div>
-                    </div>
+            <!-- Content -->
+            <div class="hero-content-wrapper">
+                <div class="hero-tagline-container">
+                    <h2 class="hero-tagline-light">Your Ideas'</h2>
+                    <h2 class="hero-tagline-bold" style="color: #0B1220;">Next Home</h2>
                 </div>
-                
-                <div class="container footer-bottom">
-                    <p>&copy; 2026 kochicode. All rights reserved. // Secure Connection (TLS 1.3)</p>
-                    <p class="footer-status"><span class="status-pulse"></span> All Systems Operational</p>
+
+                <!-- Space for MacBook Animation -->
+                <div id="macbook-animation-placeholder" class="macbook-animation-placeholder"></div>
+
+                <div class="hero-logo-container">
+                    <h1 class="hero-bottom-logo"><span style="color: var(--brand-blue);">kochi</span><span
+                            style="color: var(--brand-green);">.code</span></h1>
                 </div>
-            </footer>
+            </div>
+        </section>
+
+        <!-- Stand Out — Scroll-Driven Canvas Crowd Section -->
+        <section class="scroll-section" id="scrollSection">
+            <div class="sticky-wrap">
+                <canvas id="c"></canvas>
+                <div class="copy">
+                    <div class="line line-1" id="line1">IN A SEA OF SAMENESS</div>
+                    <div class="line line-2" id="line2">WE MAKE YOU STAND OUT.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Infinite Menu Portfolio Section -->
+        <section id="portfolio-showcase" class="portfolio-showcase-section">
+            <div class="infinite-menu-container">
+                <canvas id="infinite-grid-menu-canvas"></canvas>
+                <div id="infinite-menu-overlay" class="infinite-menu-overlay">
+                    <h2 class="face-title inactive" id="im-title"></h2>
+                    <p class="face-description inactive" id="im-desc"></p>
+                    <button class="action-button inactive" id="im-action">
+                        <span class="action-button-icon">&#x2197;</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <img src="kochi code.jpg" alt="kochicode logo" class="footer-logo">
+                </a>
+                <p>Translating architectural code concepts into highly responsive, visually stunning systems.</p>
+            </div>
+
+            <div class="footer-links-group">
+                <div class="footer-links">
+                    <h5>Platform</h5>
+                    <a href="#services">Services</a>
+                    <a href="#tech">Tech Stack</a>
+                    <a href="#about">About Us</a>
+                </div>
+                <div class="footer-links">
+                    <h5>Connect</h5>
+                    <a href="mailto:hello@kochicode.dev">hello@kochicode.dev</a>
+                    <a href="#">GitHub</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 kochicode. All rights reserved. // Secure Connection (TLS 1.3)</p>
+            <p class="footer-status"><span class="status-pulse"></span> All Systems Operational</p>
+        </div>
+    </footer>
 
     <!-- Script Entry -->
+    <script src="infinite-menu.js"></script>
     <script src="app.js"></script>
 </body>
+
 </html>

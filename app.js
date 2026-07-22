@@ -1,32 +1,71 @@
+document.body.style.overflow = 'hidden';
 /* ==========================================================================
    kochicode JavaScript Controller - Premium Interactive Components
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
+    initLoadingSequence();
     initNavigation();
-    initHeroTerminal();
+    initGrainient();
+    initCrowdAnimation();
+    initGlassLens();
+    initInfiniteMenu();
     initServicesCarousel();
     initTechStackSelector();
     initSystemMetricsMock();
     initContactForms();
 });
 
+
+/* ==========================================================================
+   0. Loading Screen & Hero Sequence
+   ========================================================================== */
+function initLoadingSequence() {
+    window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('loading-screen');
+        const heroSequence = document.getElementById('hero-sequence');
+        const navWrapper = document.getElementById('nav-wrapper');
+
+        // Step 1: Hold loading screen for a moment
+        setTimeout(() => {
+            // Fade out loading screen
+            if (loadingScreen) {
+                loadingScreen.classList.add('fade-out');
+            }
+
+            // Fade in Hero Sequence
+            if (heroSequence) {
+                heroSequence.classList.add('visible');
+            }
+
+            // Step 2: Show navbar after hero settles
+            setTimeout(() => {
+                if (navWrapper) {
+                    navWrapper.classList.add('visible');
+                }
+                // Unlock scrolling
+                document.body.style.overflow = '';
+            }, 800);
+
+        }, 500);
+    });
+}
+
 /* ==========================================================================
    1. Navigation & Scroll Interactions
    ========================================================================== */
 function initNavigation() {
-    const header = document.getElementById('main-header');
+    const glassPill = document.getElementById('glass-pill');
     const mobileToggle = document.getElementById('mobile-menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
     const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-btn');
 
-    // Sticky Nav on Scroll
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            header.classList.add('scrolled');
+            glassPill.classList.add('scrolled');
         } else {
-            header.classList.remove('scrolled');
+            glassPill.classList.remove('scrolled');
         }
     });
 
@@ -46,231 +85,229 @@ function initNavigation() {
 }
 
 /* ==========================================================================
-   2. Hero Interactive CLI Terminal
+   2. Grainient Hero Background
    ========================================================================== */
-function initHeroTerminal() {
-    const terminalOutput = document.getElementById('terminal-output');
-    const terminalInput = document.getElementById('terminal-user-input');
-    const chips = document.querySelectorAll('.chip');
-    
-    // Command History
-    let commandHistory = [];
-    let historyIndex = -1;
+function initGrainient() {
+    const container = document.getElementById('grainient-container');
+    if (!container) return;
 
-    // Command responses database
-    const commands = {
-        help: () => {
-            return `Available commands:
-  <span class="cmd-highlight">about</span>        - Get to know kochicode's operational scope
-  <span class="cmd-highlight">services</span>     - Inspect our specialized tech service modules
-  <span class="cmd-highlight">tech-stack</span>   - Show the frameworks and layers we build on
-  <span class="cmd-highlight">deploy-demo</span>  - Execute a live simulation of a cloud project deploy
-  <span class="cmd-highlight">clear</span>        - Clear terminal history
-  <span class="cmd-highlight">help</span>         - Display this active command ledger`;
-        },
-        about: () => {
-            return `kochicode is a boutique software engineering house. We design premium scalable systems for modern enterprises, bridging high-throughput backend infrastructure with responsive, visually-stunning user layers. We write clean code, containerize our workloads, and design for peak workloads.`;
-        },
-        services: () => {
-            return `Active Specialized Service Modules:
-  1. <span class="cmd-highlight">Web & App Engineering</span>  [React, Next.js, WebGL]
-  2. <span class="cmd-highlight">DevOps & Cloud Systems</span>  [Kubernetes, Terraform, AWS, GCP]
-  3. <span class="cmd-highlight">Intelligent AI Pipelines</span> [RAG pipelines, VectorDBs, Agent Automations]`;
-        },
-        'tech-stack': () => {
-            return `Engineering Ecosystem:
-  - Frontend Layer  :: Next.js / React, Vanilla CSS, Tailwind, WebGL
-  - Server Layer    :: Node.js / NestJS, Golang, Python FastAPI
-  - Data Store      :: PostgreSQL, Redis, vector-databases (Pinecone, pgvector)
-  - Infrastructure  :: Docker, Kubernetes, AWS Services, GitHub CI/CD, Terraform`;
-        },
-        tech: () => {
-            return commands['tech-stack']();
-        },
-        clear: () => {
-            terminalOutput.innerHTML = '';
-            return '';
-        }
+    // Configuration from the React props
+    const config = {
+        timeSpeed: 0.15,
+        warpStrength: 0.4,
+        warpFrequency: 5.0,
+        warpSpeed: 2.0,
+        warpAmplitude: 25.0,
+        blendAngle: 0.0,
+        blendSoftness: 0.05,
+        rotationAmount: 500.0,
+        noiseScale: 2.0,
+        grainAmount: 0.03,
+        grainScale: 2.0,
+        grainAnimated: 0.0,
+        contrast: 1.0,
+        colorBalance: 0.4,
+        saturation: 0.85,
+        centerX: 0.0,
+        centerY: 0.0,
+        zoom: 1.1,
+        color1: '#FFFFFF',
+        color2: '#0060BF',
+        color3: '#32A15D'
     };
 
-    // Simulated project compilation and deployment sequence!
-    function executeDeployDemo(onLineCallback, onCompleteCallback) {
-        const steps = [
-            { text: 'system: Initializing dockerized sandbox ecosystem...', type: 'sys', delay: 400 },
-            { text: 'system: Injecting kochicode production variables...', type: 'sys', delay: 300 },
-            { text: 'system: Resolving microservice dependencies [32/32 resolved]', type: 'info', delay: 400 },
-            { text: 'system: Building production asset bundles...', type: 'info', delay: 500 },
-            { text: 'system: Running automated end-to-end integration tests...', type: 'info', delay: 400 },
-            { text: 'system: [PASS] 48 tests succeeded / 0 failed', type: 'success', delay: 300 },
-            { text: 'system: Deploying serverless containers to edge cluster...', type: 'sys', delay: 500 },
-            { text: 'system: Configuring SSL protocols & load balancers...', type: 'sys', delay: 400 },
-            { text: 'system: [DEPLOYS SUCCESSFUL] URL: <a href="#contact" class="cmd-highlight" style="text-decoration: underline;">https://kochicode-active-sandbox.live</a>', type: 'success', delay: 200 }
-        ];
+    const hexToRgb = hex => {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        if (!result) return [1, 1, 1];
+        return [parseInt(result[1], 16) / 255, parseInt(result[2], 16) / 255, parseInt(result[3], 16) / 255];
+    };
 
-        let index = 0;
-        
-        function printNextStep() {
-            if (index < steps.length) {
-                const step = steps[index];
-                let lineClass = 'terminal-line';
-                let content = '';
+    const vertex = `#version 300 es
+in vec2 position;
+void main() {
+  gl_Position = vec4(position, 0.0, 1.0);
+}
+`;
 
-                if (step.type === 'sys') {
-                    content = `<span class="line-meta">system:</span> ${step.text.replace('system: ', '')}`;
-                } else if (step.type === 'success') {
-                    content = `<span class="line-meta" style="color:var(--accent-green)">[ SUCCESS ]</span> ${step.text.replace('system: ', '')}`;
-                } else {
-                    content = `<span class="line-meta" style="color:var(--accent-warn)">[ INFO ]</span> ${step.text.replace('system: ', '')}`;
-                }
+    const fragment = `#version 300 es
+precision highp float;
+uniform vec2 iResolution;
+uniform float iTime;
+uniform float uTimeSpeed;
+uniform float uColorBalance;
+uniform float uWarpStrength;
+uniform float uWarpFrequency;
+uniform float uWarpSpeed;
+uniform float uWarpAmplitude;
+uniform float uBlendAngle;
+uniform float uBlendSoftness;
+uniform float uRotationAmount;
+uniform float uNoiseScale;
+uniform float uGrainAmount;
+uniform float uGrainScale;
+uniform float uGrainAnimated;
+uniform float uContrast;
+uniform float uGamma;
+uniform float uSaturation;
+uniform vec2 uCenterOffset;
+uniform float uZoom;
+uniform vec3 uColor1;
+uniform vec3 uColor2;
+uniform vec3 uColor3;
+out vec4 fragColor;
+#define S(a,b,t) smoothstep(a,b,t)
+mat2 Rot(float a){float s=sin(a),c=cos(a);return mat2(c,-s,s,c);} 
+vec2 hash(vec2 p){p=vec2(dot(p,vec2(2127.1,81.17)),dot(p,vec2(1269.5,283.37)));return fract(sin(p)*43758.5453);} 
+float noise(vec2 p){vec2 i=floor(p),f=fract(p),u=f*f*(3.0-2.0*f);float n=mix(mix(dot(-1.0+2.0*hash(i+vec2(0.0,0.0)),f-vec2(0.0,0.0)),dot(-1.0+2.0*hash(i+vec2(1.0,0.0)),f-vec2(1.0,0.0)),u.x),mix(dot(-1.0+2.0*hash(i+vec2(0.0,1.0)),f-vec2(0.0,1.0)),dot(-1.0+2.0*hash(i+vec2(1.0,1.0)),f-vec2(1.0,1.0)),u.x),u.y);return 0.5+0.5*n;}
+void mainImage(out vec4 o, vec2 C){
+  float t=iTime*uTimeSpeed;
+  vec2 uv=C/iResolution.xy;
+  float ratio=iResolution.x/iResolution.y;
+  vec2 tuv=uv-0.5+uCenterOffset;
+  tuv/=max(uZoom,0.001);
 
-                const lineDiv = document.createElement('div');
-                lineDiv.className = lineClass;
-                lineDiv.innerHTML = content;
-                terminalOutput.appendChild(lineDiv);
-                terminalOutput.scrollTop = terminalOutput.scrollHeight;
-                
-                index++;
-                setTimeout(printNextStep, step.delay);
-            } else {
-                onCompleteCallback();
-            }
-        }
+  float degree=noise(vec2(t*0.1,tuv.x*tuv.y)*uNoiseScale);
+  tuv.y*=1.0/ratio;
+  tuv*=Rot(radians((degree-0.5)*uRotationAmount+180.0));
+  tuv.y*=ratio;
 
-        printNextStep();
-    }
+  float frequency=uWarpFrequency;
+  float ws=max(uWarpStrength,0.001);
+  float amplitude=uWarpAmplitude/ws;
+  float warpTime=t*uWarpSpeed;
+  tuv.x+=sin(tuv.y*frequency+warpTime)/amplitude;
+  tuv.y+=sin(tuv.x*(frequency*1.5)+warpTime)/(amplitude*0.5);
 
-    // Run Command Logic
-    function runCommand(commandStr) {
-        const cleanCommand = commandStr.trim().toLowerCase();
-        
-        // Append typed command to console
-        const inputEchoLine = document.createElement('div');
-        inputEchoLine.className = 'terminal-line';
-        inputEchoLine.innerHTML = `<span class="prompt">kochicode@dev:~$</span> <span>${escapeHtml(commandStr)}</span>`;
-        terminalOutput.appendChild(inputEchoLine);
+  vec3 colLav=uColor1;
+  vec3 colOrg=uColor2;
+  vec3 colDark=uColor3;
+  float b=uColorBalance;
+  float s=max(uBlendSoftness,0.0);
+  mat2 blendRot=Rot(radians(uBlendAngle));
+  float blendX=(tuv*blendRot).x;
+  float edge0=-0.3-b-s;
+  float edge1=0.2-b+s;
+  float v0=0.5-b+s;
+  float v1=-0.3-b-s;
+  vec3 layer1=mix(colDark,colOrg,S(edge0,edge1,blendX));
+  vec3 layer2=mix(colOrg,colLav,S(edge0,edge1,blendX));
+  vec3 col=mix(layer1,layer2,S(v0,v1,tuv.y));
 
-        if (cleanCommand) {
-            commandHistory.push(commandStr);
-            historyIndex = commandHistory.length;
+  vec2 grainUv=uv*max(uGrainScale,0.001);
+  if(uGrainAnimated>0.5){grainUv+=vec2(iTime*0.05);} 
+  float grain=fract(sin(dot(grainUv,vec2(12.9898,78.233)))*43758.5453);
+  col+=(grain-0.5)*uGrainAmount;
 
-            if (cleanCommand === 'deploy-demo' || cleanCommand === 'deploy') {
-                terminalInput.disabled = true;
-                terminalInput.placeholder = 'Compiling deploy... please wait';
-                
-                // Disable chips
-                chips.forEach(c => c.style.pointerEvents = 'none');
+  col=(col-0.5)*uContrast+0.5;
+  float luma=dot(col,vec3(0.2126,0.7152,0.0722));
+  col=mix(vec3(luma),col,uSaturation);
+  col=pow(max(col,0.0),vec3(1.0/max(uGamma,0.001)));
+  col=clamp(col,0.0,1.0);
 
-                executeDeployDemo(
-                    () => {},
-                    () => {
-                        terminalInput.disabled = false;
-                        terminalInput.placeholder = 'Type a command...';
-                        chips.forEach(c => c.style.pointerEvents = 'auto');
-                        appendPromptLine();
-                    }
-                );
-                return; // Prevents printing regular response and immediate prompt
-            } else if (commands[cleanCommand]) {
-                const result = commands[cleanCommand]();
-                if (result) {
-                    const resultLine = document.createElement('div');
-                    resultLine.className = 'terminal-line';
-                    resultLine.innerHTML = result;
-                    terminalOutput.appendChild(resultLine);
-                }
-            } else {
-                const errorLine = document.createElement('div');
-                errorLine.className = 'terminal-line';
-                errorLine.innerHTML = `bash: command not found: <span style="color:var(--accent-violet)">${escapeHtml(cleanCommand)}</span>. Type <span class="cmd-highlight">help</span> to view lists.`;
-                terminalOutput.appendChild(errorLine);
-            }
-        }
+  o=vec4(col,1.0);
+}
+void main(){
+  vec4 o=vec4(0.0);
+  mainImage(o,gl_FragCoord.xy);
+  fragColor=o;
+}
+`;
 
-        appendPromptLine();
-    }
-
-    function appendPromptLine() {
-        // Find existing cursor in terminal and remove it
-        const oldCursor = terminalOutput.querySelector('.cursor');
-        if (oldCursor) oldCursor.remove();
-
-        const promptLine = document.createElement('div');
-        promptLine.className = 'terminal-line';
-        promptLine.innerHTML = `<span class="prompt">kochicode@dev:~$</span> <span class="cursor"></span>`;
-        terminalOutput.appendChild(promptLine);
-        terminalOutput.scrollTop = terminalOutput.scrollHeight;
-    }
-
-    // Simulating Initial Typewriter Welcome Action
-    const welcomeCommand = "help";
-    let welcomeIndex = 0;
-    const typedInitSpan = terminalOutput.querySelector('.typed-init');
-    
-    function typeInitialCommand() {
-        if (welcomeIndex < welcomeCommand.length) {
-            typedInitSpan.textContent += welcomeCommand.charAt(welcomeIndex);
-            welcomeIndex++;
-            setTimeout(typeInitialCommand, 150);
-        } else {
-            setTimeout(() => {
-                // Erase typing prompt structure & execute
-                typedInitSpan.parentElement.remove();
-                runCommand(welcomeCommand);
-            }, 500);
-        }
-    }
-
-    // Trigger typewriter after brief delay
-    setTimeout(typeInitialCommand, 1000);
-
-    // Event listener for user inputs
-    terminalInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            const cmd = terminalInput.value;
-            terminalInput.value = '';
-            runCommand(cmd);
-        } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            if (historyIndex > 0) {
-                historyIndex--;
-                terminalInput.value = commandHistory[historyIndex];
-            }
-        } else if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            if (historyIndex < commandHistory.length - 1) {
-                historyIndex++;
-                terminalInput.value = commandHistory[historyIndex];
-            } else {
-                historyIndex = commandHistory.length;
-                terminalInput.value = '';
-            }
-        }
-    });
-
-    // Chip buttons click handling
-    chips.forEach(chip => {
-        chip.addEventListener('click', () => {
-            const cmd = chip.getAttribute('data-cmd');
-            // Animate typing into input field before triggering
-            terminalInput.value = '';
-            let charIndex = 0;
-            terminalInput.focus();
-            
-            function animateChipType() {
-                if (charIndex < cmd.length) {
-                    terminalInput.value += cmd.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(animateChipType, 50);
-                } else {
-                    setTimeout(() => {
-                        terminalInput.value = '';
-                        runCommand(cmd);
-                    }, 150);
-                }
-            }
-            animateChipType();
+    import('https://cdn.jsdelivr.net/npm/ogl@1.0.11/+esm').then(({ Renderer, Program, Mesh, Triangle }) => {
+        const renderer = new Renderer({
+            webgl: 2,
+            alpha: true,
+            antialias: false,
+            dpr: Math.min(window.devicePixelRatio || 1, 2)
         });
-    });
+
+        const gl = renderer.gl;
+        const canvas = gl.canvas;
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.display = 'block';
+        container.appendChild(canvas);
+
+        const geometry = new Triangle(gl);
+        const program = new Program(gl, {
+            vertex,
+            fragment,
+            uniforms: {
+                iTime:           { value: 0 },
+                iResolution:     { value: new Float32Array([1, 1]) },
+                uTimeSpeed:      { value: config.timeSpeed },
+                uColorBalance:   { value: config.colorBalance },
+                uWarpStrength:   { value: config.warpStrength },
+                uWarpFrequency:  { value: config.warpFrequency },
+                uWarpSpeed:      { value: config.warpSpeed },
+                uWarpAmplitude:  { value: config.warpAmplitude },
+                uBlendAngle:     { value: config.blendAngle },
+                uBlendSoftness:  { value: config.blendSoftness },
+                uRotationAmount: { value: config.rotationAmount },
+                uNoiseScale:     { value: config.noiseScale },
+                uGrainAmount:    { value: config.grainAmount },
+                uGrainScale:     { value: config.grainScale },
+                uGrainAnimated:  { value: config.grainAnimated },
+                uContrast:       { value: config.contrast },
+                uGamma:          { value: config.gamma },
+                uSaturation:     { value: config.saturation },
+                uCenterOffset:   { value: new Float32Array([config.centerX, config.centerY]) },
+                uZoom:           { value: config.zoom },
+                uColor1:         { value: new Float32Array(hexToRgb(config.color1)) },
+                uColor2:         { value: new Float32Array(hexToRgb(config.color2)) },
+                uColor3:         { value: new Float32Array(hexToRgb(config.color3)) }
+            }
+        });
+
+        const mesh = new Mesh(gl, { geometry, program });
+
+        const setSize = () => {
+            const rect = container.getBoundingClientRect();
+            const w = Math.max(1, Math.floor(rect.width));
+            const h = Math.max(1, Math.floor(rect.height));
+            renderer.setSize(w, h);
+            const res = program.uniforms.iResolution.value;
+            res[0] = gl.drawingBufferWidth;
+            res[1] = gl.drawingBufferHeight;
+            renderer.render({ scene: mesh });
+        };
+
+        const ro = new ResizeObserver(setSize);
+        ro.observe(container);
+        setSize();
+
+        let raf = 0;
+        let isVisible = true;
+        let isPageVisible = !document.hidden;
+        const t0 = performance.now();
+
+        const loop = t => {
+            program.uniforms.iTime.value = (t - t0) * 0.001;
+            renderer.render({ scene: mesh });
+            raf = requestAnimationFrame(loop);
+        };
+
+        const tryStart = () => {
+            if (isVisible && isPageVisible && raf === 0) raf = requestAnimationFrame(loop);
+        };
+        const tryStop = () => {
+            if (raf !== 0) { cancelAnimationFrame(raf); raf = 0; }
+        };
+
+        const io = new IntersectionObserver(
+            ([entry]) => { isVisible = entry.isIntersecting; isVisible ? tryStart() : tryStop(); },
+            { threshold: 0 }
+        );
+        io.observe(container);
+
+        const onVisibility = () => {
+            isPageVisible = !document.hidden;
+            isPageVisible ? tryStart() : tryStop();
+        };
+        document.addEventListener('visibilitychange', onVisibility);
+
+        tryStart();
+    }).catch(err => console.error("Failed to load ogl:", err));
 }
 
 /* ==========================================================================
@@ -442,26 +479,28 @@ function initContactForms() {
     }
 
     // Active Toggle states
-    btnStandard.addEventListener('click', () => {
-        btnStandard.classList.add('active');
-        btnTerminal.classList.remove('active');
-        
-        successState.classList.remove('active-form');
-        terminalForm.classList.remove('active-form');
-        standardForm.classList.add('active-form');
-    });
+    if (btnStandard && btnTerminal) {
+        btnStandard.addEventListener('click', () => {
+            btnStandard.classList.add('active');
+            btnTerminal.classList.remove('active');
+            
+            successState.classList.remove('active-form');
+            if (terminalForm) terminalForm.classList.remove('active-form');
+            standardForm.classList.add('active-form');
+        });
 
-    btnTerminal.addEventListener('click', () => {
-        btnTerminal.classList.add('active');
-        btnStandard.classList.remove('active');
-        
-        successState.classList.remove('active-form');
-        standardForm.classList.remove('active-form');
-        terminalForm.classList.add('active-form');
-        
-        // Fire Terminal Wizard Engine
-        startTerminalWizard();
-    });
+        btnTerminal.addEventListener('click', () => {
+            btnTerminal.classList.add('active');
+            btnStandard.classList.remove('active');
+            
+            successState.classList.remove('active-form');
+            standardForm.classList.remove('active-form');
+            if (terminalForm) terminalForm.classList.add('active-form');
+            
+            // Fire Terminal Wizard Engine
+            if (typeof startTerminalWizard === 'function') startTerminalWizard();
+        });
+    }
 
     // Handle standard form submit
     standardForm.addEventListener('submit', (e) => {
@@ -678,11 +717,13 @@ function initContactForms() {
         }
     }
 
-    wizardInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            processWizardStep(wizardInput.value);
-        }
-    });
+    if (wizardInput) {
+        wizardInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                processWizardStep(wizardInput.value);
+            }
+        });
+    }
 }
 
 /* ==========================================================================
@@ -718,4 +759,286 @@ function escapeHtml(str) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+}
+
+/* ==========================================================================
+   2.5. Stand Out — Scroll-Driven Canvas Crowd Animation
+   ========================================================================== */
+function initCrowdAnimation() {
+    const canvas  = document.getElementById('c');
+    const ctx     = canvas.getContext('2d');
+    const section = document.getElementById('scrollSection');
+    const line1   = document.getElementById('line1');
+    const line2   = document.getElementById('line2');
+    if (!section || !canvas) return;
+
+    let W = 0, H = 0;
+    let FX = 0, FY = 0; // focal point for hero + crowd convergence
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function resize() {
+        W  = canvas.offsetWidth;
+        H  = canvas.offsetHeight;
+        FX = W / 2;
+        FY = H / 2; // true center — the hero converges HERE over the course of the scroll,
+                     // he does not start here
+        canvas.width  = W * dpr;
+        canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        buildCrowd();
+    }
+
+    /* ── minimal figure: flat capsule silhouette, no limbs ── */
+    function drawFigure(x, y, scale, color, alpha) {
+        if (alpha <= 0.002) return;
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = color;
+        ctx.translate(x, y);
+        ctx.scale(scale, scale);
+
+        ctx.beginPath();
+        ctx.arc(0, -21, 7.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        roundRect(-11, -11, 22, 30, 11);
+
+        ctx.restore();
+    }
+
+    function roundRect(x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y,     x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x,     y + h, r);
+        ctx.arcTo(x,     y + h, x,     y,     r);
+        ctx.arcTo(x,     y,     x + w, y,     r);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    /* ── color interpolation for a smooth grey → brand-green bleed ── */
+    function lerpColor(t) {
+        const g0 = [150, 150, 150];
+        const g1 = [50, 161, 93]; // #32A15D
+        const r = Math.round(lerp(g0[0], g1[0], t));
+        const gr = Math.round(lerp(g0[1], g1[1], t));
+        const b = Math.round(lerp(g0[2], g1[2], t));
+        return `rgb(${r},${gr},${b})`;
+    }
+
+    /* ── crowd ── */
+    let crowd = [], hero = null;
+
+    function buildCrowd() {
+        crowd = [];
+        const cols = 12, rows = 8;
+        const marginX = W * 0.08, marginY = H * 0.1;
+        const usableW = W - marginX * 2, usableH = H * 0.78;
+        const sx = usableW / cols, sy = usableH / rows;
+
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                const bx = marginX + c * sx + sx * 0.5 + (Math.random() - 0.5) * sx * 0.4;
+                const by = marginY + r * sy + sy * 0.5 + (Math.random() - 0.5) * sy * 0.35;
+                const dx = bx - FX, dy = by - FY;
+                crowd.push({
+                    bx, by, cx: bx, cy: by,
+                    angle: Math.atan2(dy, dx),
+                    scale: 0.55 + Math.random() * 0.2,
+                    baseAlpha: 0.5 + Math.random() * 0.25,
+                    scatterMult: 0.7 + Math.random() * 0.6,
+                    isHero: false,
+                });
+            }
+        }
+
+        // pick a hero from a mid-ring of the crowd (not dead-center, not edge) so his
+        // walk to the true center is clearly visible rather than a subtle nudge
+        let bestIdx = 0, bestDiff = Infinity;
+        const targetDist = Math.min(W, H) * 0.16;
+        crowd.forEach((pn, i) => {
+            const d = Math.hypot(pn.bx - FX, pn.by - FY);
+            const diff = Math.abs(d - targetDist);
+            if (diff < bestDiff) { bestDiff = diff; bestIdx = i; }
+        });
+        crowd[bestIdx].isHero = true;
+        hero = crowd[bestIdx];
+        // hero keeps his natural grid spawn (bx, by) — he starts as one of the crowd
+        // and travels to FX, FY over the scroll, he does not teleport there
+    }
+
+    /* ── scroll ── */
+    let p = 0;
+    function onScroll() {
+        const rect  = section.getBoundingClientRect();
+        const total = section.offsetHeight - window.innerHeight;
+        p = Math.max(0, Math.min(1, -rect.top / total));
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+    const lerp  = (a, b, t)   => a + (b - a) * t;
+
+    // IMPORTANT: always clamp t to [0,1] BEFORE easing, never after.
+    // easeIO squares its input, so a negative t (phase not started yet)
+    // becomes positive and can wrongly evaluate as "complete".
+    const easeOut = t => { t = clamp(t, 0, 1); return 1 - Math.pow(1 - t, 3); };
+    const easeIO  = t => { t = clamp(t, 0, 1); return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; };
+
+    /* ── loop ── */
+    let animT = 0, last = performance.now();
+
+    function frame(ts) {
+        requestAnimationFrame(frame);
+        const dt = Math.min((ts - last) / 1000, 0.05);
+        last = ts; animT += dt;
+
+        // phase windows (each fed through clamp-then-ease, so it's inert until its window opens)
+        const scatterP = easeOut((p - 0.05) / 0.40); // 0.05–0.45
+        const dimP     = easeOut((p - 0.05) / 0.35); // 0.05–0.40
+        const glowP    = easeIO ((p - 0.32) / 0.34); // 0.32–0.66  — smooth grey→green bleed
+
+        // text: line 1 fully gone before line 2 starts, cinematic blur/scale reveal
+        const l1In  = easeOut((p - 0.02) / 0.14);
+        const l1Out = easeOut((p - 0.30) / 0.10);
+        const l1Alpha = l1In * (1 - l1Out);
+
+        const l2In  = easeOut((p - 0.44) / 0.18);
+        const l2Alpha = l2In;
+
+        line1.style.opacity = l1Alpha;
+        line1.style.transform = `translateY(${lerp(28, 0, l1In) - lerp(0, -20, l1Out)}px) scale(${lerp(0.96, 1, l1In)})`;
+        line1.style.filter = `blur(${lerp(6, 0, l1In) + lerp(0, 4, l1Out)}px)`;
+
+        line2.style.opacity = l2Alpha;
+        line2.style.transform = `translateY(${lerp(28, 0, l2In)}px) scale(${lerp(0.94, 1, l2In)})`;
+        line2.style.filter = `blur(${lerp(6, 0, l2In)}px)`;
+
+        // subtle cinematic dolly-in on the whole canvas as the story progresses
+        canvas.style.transform = `scale(${lerp(1, 1.045, easeOut(p / 1))})`;
+
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, W, H);
+
+        // hero's walk to center — slightly delayed/slower than the crowd's scatter so the
+        // eye reads it as "everyone else leaves, then he steps forward", not simultaneous
+        const centerP = easeOut((p - 0.08) / 0.42);
+
+        const maxS = Math.max(W, H) * 0.55;
+        for (const pn of crowd) {
+            if (pn.isHero) {
+                const tx = lerp(pn.bx, FX, centerP);
+                const ty = lerp(pn.by, FY, centerP);
+                pn.cx = lerp(pn.cx, tx, 0.06);
+                pn.cy = lerp(pn.cy, ty, 0.06);
+                continue;
+            }
+            const tx = pn.bx + Math.cos(pn.angle) * scatterP * maxS * pn.scatterMult;
+            const ty = pn.by + Math.sin(pn.angle) * scatterP * maxS * pn.scatterMult;
+            pn.cx = lerp(pn.cx, tx, 0.08);
+            pn.cy = lerp(pn.cy, ty, 0.08);
+        }
+
+        const sorted = [...crowd].sort((a, b) => a.cy - b.cy);
+        for (const pn of sorted) {
+            if (pn.isHero) continue;
+            const grey = Math.floor(lerp(150, 232, dimP));
+            drawFigure(pn.cx, pn.cy, pn.scale, `rgb(${grey},${grey},${grey})`, lerp(pn.baseAlpha, 0.10, dimP));
+        }
+
+        const hx = hero.cx, hy = hero.cy;
+
+        if (glowP > 0.001) {
+            [[170, 0.07], [100, 0.16]].forEach(([r, a]) => {
+                const g = ctx.createRadialGradient(hx, hy, 0, hx, hy, r * (0.5 + glowP * 0.5));
+                g.addColorStop(0, `rgba(50,161,93,${a * glowP})`);
+                g.addColorStop(1, 'rgba(50,161,93,0)');
+                ctx.beginPath(); ctx.arc(hx, hy, r, 0, Math.PI * 2);
+                ctx.fillStyle = g; ctx.fill();
+            });
+        }
+
+        // gentle idle breathing once the hero has come alive, for a living, cinematic quality
+        const breathe = Math.sin(animT * 1.1) * 0.02 * glowP;
+        const heroScale = lerp(0.6, 1.08, centerP) + breathe;
+        drawFigure(hx, hy, heroScale, lerpColor(glowP), 1);
+
+        const vg = ctx.createRadialGradient(hx, hy, H * 0.22, hx, hy, H * 0.78);
+        vg.addColorStop(0, 'rgba(255,255,255,0)');
+        vg.addColorStop(1, 'rgba(255,255,255,0.9)');
+        ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    onScroll();
+    requestAnimationFrame(frame);
+}
+
+/* ==========================================================================
+   8. Glass Lens Cursor Effect
+   ========================================================================== */
+function initGlassLens() {
+    const lens = document.getElementById('glass-lens');
+    if (!lens) return;
+
+    // Only activate on devices with a fine pointer (mouse)
+    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+
+    let mouseX = -200;
+    let mouseY = -200;
+    let lensX = -200;
+    let lensY = -200;
+    let isVisible = false;
+    const ease = 0.12; // Lower = smoother/laggier trailing
+
+    // Track mouse position
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        if (!isVisible) {
+            isVisible = true;
+            lens.classList.add('active');
+        }
+    });
+
+    // Hide when mouse leaves the viewport
+    document.addEventListener('mouseleave', () => {
+        isVisible = false;
+        lens.classList.remove('active');
+    });
+
+    document.addEventListener('mouseenter', () => {
+        isVisible = true;
+        lens.classList.add('active');
+    });
+
+    // Grow lens when hovering over interactive elements
+    const interactiveSelectors = 'a, button, input, textarea, select';
+    document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(interactiveSelectors)) {
+            lens.classList.add('hovering');
+        }
+    });
+    document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(interactiveSelectors)) {
+            lens.classList.remove('hovering');
+        }
+    });
+
+    // Animation loop — smooth easing toward mouse position at 60fps
+    function animate() {
+        lensX += (mouseX - lensX) * ease;
+        lensY += (mouseY - lensY) * ease;
+
+        lens.style.left = lensX + 'px';
+        lens.style.top = lensY + 'px';
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 }
